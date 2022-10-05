@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import Unit from '../model/interface/unit';
+import { Unit } from '../model/unit';
 
 @Component({
   template: '',
@@ -11,13 +11,16 @@ export class BaseConverterComponent {
   valueBeforeConversion = 0;
   convertedValue = 0;
 
-  constructor(@Inject('unitFrom') unitFrom: Unit, @Inject('unitTo') unitTo: Unit) {
-    this.unitFrom = unitFrom;
-    this.unitTo = unitTo;
+  constructor(
+    @Inject('defaultUnitFrom') defaultUnitFrom: Unit,
+    @Inject('defaultUnitTo') defaultUnitTo: Unit
+  ) {
+    this.unitFrom = defaultUnitFrom;
+    this.unitTo = defaultUnitTo;
   }
 
   convert() {
-    const valueInBaseUnit = this.unitFrom.getBaseUnitValue(this.valueBeforeConversion);
-    this.convertedValue = this.unitTo.convertFromBaseUnit(valueInBaseUnit);
+    // const valueInBaseUnit = this.unitFrom.getBaseUnitValue(this.valueBeforeConversion);
+    // this.convertedValue = this.unitTo.convertFromBaseUnit(valueInBaseUnit);
   }
 }
